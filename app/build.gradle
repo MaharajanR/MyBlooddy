@@ -4,7 +4,7 @@ android {
     compileSdkVersion 24
     buildToolsVersion "24.0.0"
     defaultConfig {
-        applicationId "finalyearproject.example.mylab"
+        applicationId "world.myblooddy"
         minSdkVersion 24
         targetSdkVersion 24
         versionCode 1

@@ -8,63 +8,64 @@
     android:orientation="vertical"
     android:background="@color/colorWhite"
     tools:context="world.myblooddy.RegisterActivity">
-<ScrollView
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent">
-    <LinearLayout
-        android:orientation="vertical"
+
+    <ScrollView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:id="@+id/etUser"
-        android:hint="Name"
-        android:textColorHint="@color/colorPrimary"
-        android:layout_margin="20dp"
-
-        />
-
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:id="@+id/etPass"
-            android:hint="Password"
-            android:textColor="@color/colorWhite"
+            android:inputType="textPersonName"
+            android:id="@+id/etUser"
+            android:hint="Name"
+            android:textColorHint="#8c8c8c"
             android:layout_margin="20dp"
+
             />
+
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:id="@+id/etPass"
+                android:hint="Password"
+                android:textColor="@color/colorWhite"
+                android:layout_margin="20dp"
+                />
 
 
         <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:id="@+id/mob_no"
-        android:hint="Mobile number"
-        android:layout_margin="20dp"/>
-
-    <DatePicker
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/datePicker"
-        android:layout_margin="20dp"/>
-
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:prompt="@string/spinner_title"
-            />
-
-        <Button
-            android:text="REGISTER"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btnReg"
-            />
+            android:inputType="number"
+            android:id="@+id/mob_no"
+            android:hint="Mobile number"
+            android:layout_margin="20dp"/>
 
-    </LinearLayout>
-</ScrollView>
+        <DatePicker
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/datePicker"
+            android:layout_margin="20dp"/>
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:prompt="@string/spinner_title"
+                />
+
+            <Button
+                android:text="REGISTER"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnReg"
+                />
+
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

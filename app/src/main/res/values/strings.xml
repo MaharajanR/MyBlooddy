@@ -2,7 +2,7 @@
     <string name="app_name">MyBlooddy</string>
     <string name="email">email</string>
     <string name="spinner_title">Blood Group</string>
-    <string-array name="blood_grp">
+    <string-array name="blood_groups">
     <item>O+</item>
     <item>O-</item>
     <item>A+</item>

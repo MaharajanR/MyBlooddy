@@ -48,15 +48,16 @@
 
             <DatePicker
                 android:layout_width="wrap_content"
-                android:layout_height="92dp"
+                android:layout_height="wrap_content"
                 android:id="@+id/datePicker"
                 android:layout_margin="20dp"/>
 
             <Spinner
                 android:id="@+id/spinner"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:prompt="@string/spinner_title"
+                tools:listitem="@array/blood_groups"
                 />
 
             <Button
@@ -65,15 +66,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/btnReg"
                 />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/txtView"
-                android:text="Already User"
-                android:textAlignment="center"
-                android:textSize="7pt"
-                android:padding="10dp"
-                android:onClick="txtView"/>
+
 
         </LinearLayout>
     </ScrollView>

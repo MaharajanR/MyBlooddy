@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Definig a container for you List Item-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:id="@+id/news_item_holder"
+    android:background="@drawable/item_bg">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="1dp"
+        android:padding="10dp"
+        android:paddingLeft="5dp">
+
+        <TextView
+            android:id="@+id/blooddy_name"
+            android:textColor="#000000"
+            android:gravity="left"
+            android:textStyle="normal"
+            android:text="sample"
+            android:textSize="15sp"
+            android:layout_margin="2dip"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="MissingPrefix" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:padding="2dp"
+            android:layout_margin="1dp"
+            android:background="#FFFFFF">
+            <TextView
+                android:id="@+id/blood_group"
+                android:textSize="10dp"
+                android:text="today"
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp"
+                android:background="@drawable/round_corner_for_time"
+                android:textColor="#ffffff"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:gravity="center_vertical"
+                android:layout_marginRight="10dp"/>
+            <TextView
+                android:id="@+id/last_given"
+                android:textSize="10dp"
+                android:textColor="#979797"
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:gravity="center_vertical"
+                android:layout_marginRight="10dp"/>
+
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

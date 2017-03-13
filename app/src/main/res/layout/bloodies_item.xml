@@ -56,9 +56,24 @@
                 android:gravity="center_vertical"
                 android:layout_marginRight="10dp"/>
 
+            <TextView
+                android:id="@+id/blood_req_send"
+                android:textSize="10dp"
+                android:text="send request"
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp"
+                android:background="@drawable/round_corner_for_time"
+                android:textColor="#ffffff"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginRight="10dp"/>
+
 
 
         </LinearLayout>
+
+
+
     </LinearLayout>
 
 

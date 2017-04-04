@@ -1,4 +1,4 @@
-package world.myblooddy;
+package world.myblooddy.DataStore;
 
 import android.app.Activity;
 import android.content.Context;
@@ -12,18 +12,17 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import world.myblooddy.DataStore.Requests;
+import world.myblooddy.R;
 
 /**
  * Created by Jacob Samro on 09-Apr-16.
  */
-public class BlooddiesAdapter extends BaseAdapter {
+public class SendRequestsAdapter extends BaseAdapter {
 
     Context context;
     Activity activity;
@@ -34,12 +33,12 @@ public class BlooddiesAdapter extends BaseAdapter {
 
     private static LayoutInflater inflater = null;
 
-    public BlooddiesAdapter(Context context,
-                            Activity activity,
-                            FragmentManager fManager,
-                            ArrayList<String> names,
-                            ArrayList<String> blood_group,
-                            ArrayList<String> last_given) {
+    public SendRequestsAdapter(Context context,
+                               Activity activity,
+                               FragmentManager fManager,
+                               ArrayList<String> names,
+                               ArrayList<String> blood_group,
+                               ArrayList<String> last_given) {
 
         this.context = context;
         this.names = names;
@@ -99,7 +98,7 @@ public class BlooddiesAdapter extends BaseAdapter {
 
         if (vi == null) {
 
-                vi = inflater.inflate(R.layout.bloodies_item, null);
+                vi = inflater.inflate(R.layout.bloodies_sent_item, null);
 
         }
 

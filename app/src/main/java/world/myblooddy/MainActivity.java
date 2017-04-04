@@ -24,6 +24,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
+
+import world.myblooddy.Fragments.BuddiesFragment;
+import world.myblooddy.Fragments.IncomingFragment;
+import world.myblooddy.Fragments.SentFragment;
 import world.myblooddy.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -44,9 +48,9 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    static Boolean IncomingViewCreated = false;
-    static Boolean BuddiesViewCreated = false;
-    static Boolean SentViewCreated = false;
+    public static Boolean ReceivedViewCreated = false;
+    public static Boolean BuddiesViewCreated = false;
+    public static Boolean SentViewCreated = false;
 
     static FragmentManager fragmentManager;
 
@@ -123,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         incomingFragment = new IncomingFragment();
-        buddiesFragment = new BuddiesFragment();
+        buddiesFragment = new BuddiesFragment(context,getParent(),fragmentManager);
 
         adapter.addFrag(incomingFragment, "Incoming");
         adapter.addFrag(buddiesFragment, "My Blooddies");
@@ -142,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
             public void onPageSelected(int position) {
 
                 if(position == 0){
-                    if(IncomingViewCreated){
+                    if(ReceivedViewCreated){
                         try{
 
 
@@ -162,6 +166,14 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                 }else if(position == 2){
+                    if(SentViewCreated){
+                        try {
+                            //newsItemAdapter.notifyDataSetChanged();
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
 
                 }
 
@@ -242,133 +254,8 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
     }
 
-    public static class IncomingFragment extends Fragment {
-
-        static ListView listview;
-        static RelativeLayout favoritesEmptyView;
-        static boolean hasFavorites = false;
-
-        public IncomingFragment(){
-        }
-
-        @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-        }
-
-        @Nullable
-        @Override
-        public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
 
-            View view = inflater.inflate(R.layout.incoming_list, container, false);
-
-            return view;
-        }
-
-
-
-
-    }
-
-    public static class SentFragment extends Fragment {
-
-        ListView listview;
-
-        public SentFragment(){
-        }
-
-        @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-
-
-
-        }
-
-        @Nullable
-        @Override
-        public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-
-            final View view = inflater.inflate(R.layout.sent_list, container, false);
-
-            SentViewCreated =true;
-
-            return view;
-        }
-
-
-    }
-
-    public static class BuddiesFragment extends Fragment {
-
-
-
-
-        static Boolean isLoadMoreLoading = false;
-
-        boolean hasFeeds = false;
-
-        static SwipeRefreshLayout swipeNewsHolderHandler;
-        static ListView listview;
-
-        static RelativeLayout feedProcessView;
-
-
-        public BuddiesFragment(){
-
-        }
-
-        @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-
-            Log.d("View", "Main View Created !");
-
-            View view = inflater.inflate(R.layout.blooddies_list, container, false);
-
-            listview = (ListView) view.findViewById(R.id.blooddies_list);
-
-            ArrayList<String> names = new ArrayList<String>();
-            ArrayList<String> blood_group = new ArrayList<String>();
-            ArrayList<String> last_given = new ArrayList<String>();
-
-            names.add("Jinitha");
-            names.add("Sariga");
-            names.add("Maharanjan");
-
-            blood_group.add("A+");
-            blood_group.add("B+");
-            blood_group.add("AB+");
-
-            last_given.add("not given yet");
-            last_given.add("6 months ago");
-            last_given.add("a day ago");
-
-
-            BlooddiesAdapter blooddiesAdapter = new BlooddiesAdapter(context,
-                    activity,
-                    fragmentManager,
-                    names,
-                    blood_group,
-                    last_given);
-
-            listview.setAdapter(blooddiesAdapter);
-
-            BuddiesViewCreated = true;
-            return view;
-
-        }
-
-
-
-    }
 
     void Log(String mes){
         Log.e("ARO LOGGER : ", mes);

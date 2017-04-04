@@ -1,0 +1,44 @@
+package world.myblooddy.Fragments;
+
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ListView;
+
+import world.myblooddy.R;
+
+/**
+ * Created by Jacob Samro on 04-Apr-17.
+ */
+
+public class SentFragment extends Fragment {
+
+    ListView listview;
+
+    public SentFragment(){
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+
+
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+
+        final View view = inflater.inflate(R.layout.sent_list, container, false);
+
+
+        return view;
+    }
+
+
+}

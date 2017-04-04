@@ -15,13 +15,13 @@
 
     <ListView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/blooddies_list"
+        android:id="@+id/blooddies_received_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="0dp"
         android:transcriptMode="normal"
         android:layout_marginRight="0dp"
-        tools:listitem="@layout/bloodies_item" />
+        tools:listitem="@layout/bloodies_received_item" />
 
 
 </android.support.v4.widget.SwipeRefreshLayout>

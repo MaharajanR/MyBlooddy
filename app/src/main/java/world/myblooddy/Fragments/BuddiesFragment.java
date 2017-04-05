@@ -4,19 +4,17 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 
 import world.myblooddy.DataStore.AppConstants;
-import world.myblooddy.DataStore.BlooddiesAdapter;
+import world.myblooddy.Adapters.BlooddiesAdapter;
 import world.myblooddy.R;
 
 /**

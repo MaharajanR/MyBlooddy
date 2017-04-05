@@ -1,4 +1,4 @@
-package world.myblooddy.DataStore;
+package world.myblooddy.Adapters;
 
 import android.app.Activity;
 import android.content.Context;
@@ -17,6 +17,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import world.myblooddy.DataStore.Requests;
 import world.myblooddy.R;
 
 /**

@@ -1,9 +1,10 @@
-package world.myblooddy.DataStore;
+package world.myblooddy.Adapters;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -20,24 +22,27 @@ import world.myblooddy.R;
 /**
  * Created by Jacob Samro on 09-Apr-16.
  */
-public class SearchAdapter extends BaseAdapter {
+public class SentRequestsAdapter extends BaseAdapter {
 
     Context context;
+    Activity activity;
     ArrayList<String> names = new ArrayList<String>();
-    ArrayList<String> blood_group = new ArrayList<String>();
-    ArrayList<String> last_given = new ArrayList<String>();
+    ArrayList<String> sent_blood_group = new ArrayList<String>();
+    ArrayList<String> sent_time = new ArrayList<String>();
 
     private static LayoutInflater inflater = null;
 
-    public SearchAdapter(Context context,
-                         ArrayList<String> names,
-                         ArrayList<String> blood_group,
-                         ArrayList<String> last_given) {
+    public SentRequestsAdapter(Context context,
+                               Activity activity,
+                               ArrayList<String> names,
+                               ArrayList<String> sent_blood_group,
+                               ArrayList<String> sent_time) {
 
         this.context = context;
         this.names = names;
-        this.blood_group = blood_group;
-        this.last_given = last_given;
+        this.sent_blood_group = sent_blood_group;
+        this.sent_time = sent_time;
+        this.activity = activity;
 
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -65,13 +70,13 @@ public class SearchAdapter extends BaseAdapter {
 
     public void startIntent(Intent i){
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(Intent.createChooser(i, "Share via"));
+        activity.startActivity(Intent.createChooser(i, "Share via"));
     }
 
 
     public void startREWSIntent(Intent i){
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(i);
+        activity.startActivity(i);
     }
 
     public void moveFragment(){
@@ -90,45 +95,24 @@ public class SearchAdapter extends BaseAdapter {
 
         if (vi == null) {
 
-                vi = inflater.inflate(R.layout.item_bloodies_search, null);
+                vi = inflater.inflate(R.layout.item_bloodies_sent, null);
 
         }
 
 
         final TextView tv_name = (TextView) vi.findViewById(R.id.blooddy_name);
-        final TextView tv_bloodgroup = (TextView) vi.findViewById(R.id.blood_group);
-        final TextView tv_lastgiven = (TextView) vi.findViewById(R.id.last_given);
+        final TextView tv_sent_bloodgroup = (TextView) vi.findViewById(R.id.sent_blood_group);
+        final TextView tv_sent_time = (TextView) vi.findViewById(R.id.sent_time);
 
 
-        final TextView tv_blood_req_send = (TextView) vi.findViewById(R.id.blood_req_send);
-
-        tv_blood_req_send.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(context,"Request Sent",Toast.LENGTH_LONG).show();
-                try {
-
-                    JSONObject req = new JSONObject();
-
-                    req.put("from","jinitha");
-                    req.put("to",names.get(position));
-
-                    Requests.sent.put(req);
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-            }
-        });
 
         tv_name.setText(names.get(position));
         tv_name.setTag(position);
 
 
-        tv_bloodgroup.setText(blood_group.get(position));
+        tv_sent_bloodgroup.setText(sent_blood_group.get(position));
 
-        tv_lastgiven.setText(last_given.get(position));
+        tv_sent_time.setText(sent_time.get(position));
 
 
 

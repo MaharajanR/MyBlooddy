@@ -5,19 +5,16 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 
 import world.myblooddy.DataStore.AppConstants;
-import world.myblooddy.DataStore.BlooddiesAdapter;
-import world.myblooddy.DataStore.IncomingRequestsAdapter;
+import world.myblooddy.Adapters.IncomingRequestsAdapter;
 import world.myblooddy.R;
 
 /**

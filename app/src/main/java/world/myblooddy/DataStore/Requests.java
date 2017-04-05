@@ -10,6 +10,7 @@ import java.util.ArrayList;
  */
 
 public class Requests {
+
     public static JSONArray sent = new JSONArray();
     public static JSONArray received = new JSONArray();
 
@@ -18,6 +19,10 @@ public class Requests {
     }
 
     public static boolean getRequests(){
+        return true;
+    }
+
+    public static boolean acceptRequest(JSONObject req){
         return true;
     }
 }

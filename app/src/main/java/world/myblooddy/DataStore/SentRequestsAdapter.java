@@ -22,29 +22,26 @@ import world.myblooddy.R;
 /**
  * Created by Jacob Samro on 09-Apr-16.
  */
-public class SendRequestsAdapter extends BaseAdapter {
+public class SentRequestsAdapter extends BaseAdapter {
 
     Context context;
     Activity activity;
     ArrayList<String> names = new ArrayList<String>();
-    ArrayList<String> blood_group = new ArrayList<String>();
-    ArrayList<String> last_given = new ArrayList<String>();
-    FragmentManager fragmentManager;
+    ArrayList<String> sent_blood_group = new ArrayList<String>();
+    ArrayList<String> sent_time = new ArrayList<String>();
 
     private static LayoutInflater inflater = null;
 
-    public SendRequestsAdapter(Context context,
+    public SentRequestsAdapter(Context context,
                                Activity activity,
-                               FragmentManager fManager,
                                ArrayList<String> names,
-                               ArrayList<String> blood_group,
-                               ArrayList<String> last_given) {
+                               ArrayList<String> sent_blood_group,
+                               ArrayList<String> sent_time) {
 
         this.context = context;
         this.names = names;
-        this.blood_group = blood_group;
-        this.last_given = last_given;
-        this.fragmentManager = fManager;
+        this.sent_blood_group = sent_blood_group;
+        this.sent_time = sent_time;
         this.activity = activity;
 
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -98,44 +95,24 @@ public class SendRequestsAdapter extends BaseAdapter {
 
         if (vi == null) {
 
-                vi = inflater.inflate(R.layout.bloodies_sent_item, null);
+                vi = inflater.inflate(R.layout.item_bloodies_sent, null);
 
         }
 
 
         final TextView tv_name = (TextView) vi.findViewById(R.id.blooddy_name);
-        final TextView tv_bloodgroup = (TextView) vi.findViewById(R.id.blood_group);
-        final TextView tv_lastgiven = (TextView) vi.findViewById(R.id.last_given);
-        final TextView tv_blood_req_send = (TextView) vi.findViewById(R.id.blood_req_send);
+        final TextView tv_sent_bloodgroup = (TextView) vi.findViewById(R.id.sent_blood_group);
+        final TextView tv_sent_time = (TextView) vi.findViewById(R.id.sent_time);
 
-        tv_blood_req_send.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(context,"Request Sent",Toast.LENGTH_LONG).show();
-                try {
 
-                JSONObject req = new JSONObject();
-
-                    req.put("from","jinitha");
-                    req.put("to",names.get(position));
-
-                    Requests.sent.put(req);
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        });
 
         tv_name.setText(names.get(position));
         tv_name.setTag(position);
 
-        //itemHolder.setBackgroundResource(R.drawable.item_bg);
 
-        tv_bloodgroup.setText(blood_group.get(position));
+        tv_sent_bloodgroup.setText(sent_blood_group.get(position));
 
-        tv_lastgiven.setText(last_given.get(position));
+        tv_sent_time.setText(sent_time.get(position));
 
 
 
@@ -147,7 +124,4 @@ public class SendRequestsAdapter extends BaseAdapter {
     }
 
 
-    public FragmentManager getSupportFragmentManager() {
-        return fragmentManager;
-    }
 }

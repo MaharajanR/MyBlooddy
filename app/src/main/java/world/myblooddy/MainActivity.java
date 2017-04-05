@@ -15,16 +15,20 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AbsListView;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import world.myblooddy.DataStore.AppConstants;
 import world.myblooddy.Fragments.BuddiesFragment;
 import world.myblooddy.Fragments.IncomingFragment;
 import world.myblooddy.Fragments.SentFragment;
@@ -37,20 +41,13 @@ public class MainActivity extends AppCompatActivity {
     private static Activity activity = null;
     static Context context;
 
+    EditText et_search;
 
 
-    static int lastVisibleItemUID = 0;
-    static int _totalItemCount = 0;
 
-    IncomingFragment incomingFragment = null;
-    BuddiesFragment buddiesFragment = null;
+
     ViewPagerAdapter adapter;
 
-
-
-    public static Boolean ReceivedViewCreated = false;
-    public static Boolean BuddiesViewCreated = false;
-    public static Boolean SentViewCreated = false;
 
     static FragmentManager fragmentManager;
 
@@ -66,8 +63,6 @@ public class MainActivity extends AppCompatActivity {
 
     public MainActivity(){
 
-
-
     }
 
     @Override
@@ -78,6 +73,25 @@ public class MainActivity extends AppCompatActivity {
 
         context = getApplicationContext();
 
+        et_search = (EditText) findViewById(R.id.search);
+
+        et_search.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                        (keyCode == KeyEvent.KEYCODE_ENTER)) {
+
+                    Log.d("SEARCH", et_search.getText().toString());
+
+                    Intent i = new Intent(MainActivity.this, SearchActivity.class);
+                    i.putExtra("query", et_search.getText().toString());
+                    startActivity(i);
+
+                    return true;
+                }
+                return false;
+            }
+        });
 
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -126,12 +140,11 @@ public class MainActivity extends AppCompatActivity {
 
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-        incomingFragment = new IncomingFragment();
-        buddiesFragment = new BuddiesFragment(context,getParent(),fragmentManager);
+        adapter.addFrag(IncomingFragment.getInstance(context,getParent()),  "Incoming");
+        adapter.addFrag(BuddiesFragment.getInstance(context,getParent()), "My Blooddies");
+        adapter.addFrag(SentFragment.getInstance(context,getParent()), "Sent");
 
-        adapter.addFrag(incomingFragment, "Incoming");
-        adapter.addFrag(buddiesFragment, "My Blooddies");
-        adapter.addFrag(new SentFragment(), "Sent");
+
         viewPager.setAdapter(adapter);
         viewPager.setOffscreenPageLimit(3);
         viewPager.setCurrentItem(1,true);
@@ -146,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
             public void onPageSelected(int position) {
 
                 if(position == 0){
-                    if(ReceivedViewCreated){
+                    if(AppConstants.IncomingViewCreated){
                         try{
 
 
@@ -156,9 +169,9 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 }else if(position == 1){
-                    if(BuddiesViewCreated){
+                    if(AppConstants.BuddiesViewCreated){
                         try {
-                            //newsItemAdapter.notifyDataSetChanged();
+
 
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -166,9 +179,9 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                 }else if(position == 2){
-                    if(SentViewCreated){
+                    if(AppConstants.SentViewCreated){
                         try {
-                            //newsItemAdapter.notifyDataSetChanged();
+
 
                         } catch (Exception e) {
                             e.printStackTrace();

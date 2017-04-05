@@ -15,6 +15,7 @@ import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 
+import world.myblooddy.DataStore.AppConstants;
 import world.myblooddy.DataStore.BlooddiesAdapter;
 import world.myblooddy.R;
 
@@ -26,29 +27,19 @@ public class BuddiesFragment extends Fragment {
 
 
 
+    SwipeRefreshLayout swipeHolderHandler;
+    ListView listview;
 
-    static Boolean isLoadMoreLoading = false;
-
-    boolean hasFeeds = false;
-
-    static SwipeRefreshLayout swipeNewsHolderHandler;
-    static ListView listview;
-
-    static RelativeLayout feedProcessView;
 
     Context context;
     Activity activity;
-    FragmentManager fragmentManager;
 
-    public BuddiesFragment(){
-
-    }
+    public BuddiesFragment(){}
 
 
-    public BuddiesFragment(Context context, Activity activity,FragmentManager fragmentManager){
+    public BuddiesFragment(Context context, Activity activity){
         this.context = context;
         this.activity = activity;
-        this.fragmentManager = fragmentManager;
 
     }
 
@@ -63,9 +54,12 @@ public class BuddiesFragment extends Fragment {
 
         Log.d("View", "Main View Created !");
 
-        View view = inflater.inflate(R.layout.blooddies_list, container, false);
+        View view = inflater.inflate(R.layout.list_blooddies, container, false);
 
         listview = (ListView) view.findViewById(R.id.blooddies_list);
+
+        swipeHolderHandler = (SwipeRefreshLayout) view.findViewById(R.id.swipeHolder);
+
 
         ArrayList<String> names = new ArrayList<String>();
         ArrayList<String> blood_group = new ArrayList<String>();
@@ -86,15 +80,28 @@ public class BuddiesFragment extends Fragment {
 
         BlooddiesAdapter blooddiesAdapter = new BlooddiesAdapter(context,
                 activity,
-                fragmentManager,
                 names,
                 blood_group,
                 last_given);
 
         listview.setAdapter(blooddiesAdapter);
 
-        //BuddiesViewCreated = true;
+        AppConstants.BuddiesViewCreated = true;
+
+
+        if(names.size() > 0){
+            swipeHolderHandler.setVisibility(View.VISIBLE);
+        }
+
+
+
         return view;
+
+    }
+
+    public static Fragment getInstance(Context context, Activity activity){
+
+        return new BuddiesFragment(context,activity);
 
     }
 

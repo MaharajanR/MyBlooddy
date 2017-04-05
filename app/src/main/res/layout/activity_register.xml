@@ -10,11 +10,12 @@
     tools:context="world.myblooddy.RegisterActivity">
 
     <ScrollView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:padding="15dp"
             android:layout_height="wrap_content">
         <EditText
             android:layout_width="match_parent"
@@ -23,7 +24,7 @@
             android:id="@+id/etUser"
             android:hint="Name"
             android:textColorHint="#8c8c8c"
-            android:layout_margin="20dp"
+            android:layout_marginTop="20dp"
 
             />
 
@@ -34,7 +35,7 @@
                 android:id="@+id/etPass"
                 android:hint="Password"
                 android:textColor="@color/colorWhite"
-                android:layout_margin="20dp"
+                android:layout_marginTop="20dp"
                 />
 
 
@@ -44,27 +45,28 @@
             android:inputType="number"
             android:id="@+id/mob_no"
             android:hint="Mobile number"
-            android:layout_margin="20dp"/>
+            android:layout_marginTop="20dp"/>
 
-            <DatePicker
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/datePicker"
-                android:layout_margin="20dp"/>
 
             <Spinner
                 android:id="@+id/spinner"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dropdown"
                 android:prompt="@string/spinner_title"
-                tools:listitem="@array/blood_groups"
+                android:entries="@array/blood_groups"
+                android:layout_marginTop="20dp"
                 />
 
             <Button
                 android:text="REGISTER"
+                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/btnReg"
+
+                android:background="#5e5e5e"
+                android:textColor="#FFF"
                 />
 
 

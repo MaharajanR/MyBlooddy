@@ -27,17 +27,22 @@
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
 
 
-                <EditText
-                    android:layout_width="180dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"/>
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_notifications_black_24dp"
-                    android:paddingRight="5dp"
-                    android:id="@+id/mainscreen_settings"
-                    android:layout_gravity="end"/>
+    <EditText
+        android:hint="Search..."
+        android:textSize="12sp"
+        android:id="@+id/search"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:inputType="textPersonName"
+        android:lines="1" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_notifications_black_24dp"
+        android:paddingRight="5dp"
+        android:id="@+id/mainscreen_settings"
+        android:layout_gravity="end"/>
 
             </android.support.v7.widget.Toolbar>
             <android.support.design.widget.TabLayout

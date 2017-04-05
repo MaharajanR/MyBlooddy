@@ -36,7 +36,7 @@
             android:layout_margin="1dp"
             android:background="#FFFFFF">
             <TextView
-                android:id="@+id/blood_group"
+                android:id="@+id/received_blood_group"
                 android:textSize="10dp"
                 android:text="AB+ve"
                 android:paddingRight="10dp"
@@ -47,7 +47,7 @@
                 android:gravity="center_vertical"
                 android:layout_marginRight="10dp"/>
             <TextView
-                android:id="@+id/last_given"
+                android:id="@+id/request_received_time"
                 android:textSize="10dp"
                 android:text="a minute ago"
                 android:textColor="#979797"
@@ -57,7 +57,7 @@
                 android:layout_marginRight="10dp"/>
 
             <TextView
-                android:id="@+id/blood_req_send"
+                android:id="@+id/blood_req_accept"
                 android:textSize="10dp"
                 android:text="accept request"
                 android:paddingRight="10dp"

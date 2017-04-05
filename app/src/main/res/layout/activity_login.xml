@@ -9,6 +9,15 @@
     android:background="@color/colorWhite"
     tools:context="world.myblooddy.LoginActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MyBlooddy"
+        android:layout_marginTop="20dp"
+        android:textSize="25sp"
+        android:layout_gravity="center"/>
+
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,8 +49,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Login"
-        android:background="@color/colorPrimary"
+        android:background="#22ab0a"
         android:id="@+id/btnLogin"
+        android:textColor="#FFF"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
@@ -54,7 +64,8 @@
         android:id="@+id/btnReg"
         android:layout_below="@+id/btnReg"
         android:layout_marginTop="10dp"
-        android:background="@color/colorPrimaryDark"
+        android:background="#5e5e5e"
+        android:textColor="#FFF"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"/>

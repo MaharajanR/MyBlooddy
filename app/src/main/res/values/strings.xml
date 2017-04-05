@@ -3,13 +3,14 @@
     <string name="email">email</string>
     <string name="spinner_title">Blood Group</string>
     <string-array name="blood_groups">
-    <item>O+</item>
-    <item>O-</item>
-    <item>A+</item>
-    <item>A-</item>
-    <item>B+</item>
-    <item>B-</item>
-    <item>AB+</item>
-    <item>AB-</item>
+        <item>O+</item>
+        <item>O-</item>
+        <item>A+</item>
+        <item>A-</item>
+        <item>B+</item>
+        <item>B-</item>
+        <item>AB+</item>
+        <item>AB-</item>
     </string-array>
+    <string name="title_activity_search">SearchActivity</string>
 </resources>

@@ -6,8 +6,29 @@
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:visibility="gone"
+        android:id="@+id/swipeHolder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/sent_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="0dp"
+            android:transcriptMode="normal"
+            android:layout_marginRight="0dp"
+            tools:listitem="@layout/item_bloodies_sent" />
+
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
     <RelativeLayout
-        android:id="@+id/fav_empty_view"
+        android:id="@+id/empty_view"
         android:visibility="visible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,7 +47,7 @@
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:layout_below="@+id/empty_image"
-            android:text="No Blood Requests Received !"/>
+            android:text="No Blood Requests sent !"/>
     </RelativeLayout>
 
 </RelativeLayout>

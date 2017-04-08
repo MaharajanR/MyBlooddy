@@ -3,11 +3,20 @@ package world.myblooddy;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
+import cz.msebera.android.httpclient.Header;
+import world.myblooddy.DataStore.Requests;
+
 import static android.R.attr.button;
+import static world.myblooddy.DataStore.AppConstants.SERVER;
 
 public class LoginActivity extends AppCompatActivity{
     private Button login,register;
@@ -28,8 +37,35 @@ public class LoginActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
 
-                Intent i = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(i);
+
+               String mobile =  editTextPhone.getText().toString();
+                String passwrod = editTextPassword.getText().toString();
+
+                AsyncHttpClient client = new AsyncHttpClient();
+
+                RequestParams params = new RequestParams();
+                params.add("id",mobile);
+                params.add("password",passwrod);
+
+                client.post(SERVER + "/user/login", params, new AsyncHttpResponseHandler() {
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+
+                        if(Integer.parseInt(new String(responseBody)) == 1){
+                            Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(i);
+                        }else{
+                            Requests.makeSnackbar(getCurrentFocus(),"Invalid Credentials");
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+
+                    }
+                });
+
                
             }
         });

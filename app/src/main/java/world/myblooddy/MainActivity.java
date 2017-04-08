@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
                     Intent i = new Intent(MainActivity.this, SearchActivity.class);
                     i.putExtra("query", et_search.getText().toString());
+                    
                     startActivity(i);
 
                     return true;

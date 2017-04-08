@@ -34,7 +34,6 @@
                 android:inputType="textPassword"
                 android:id="@+id/etPass"
                 android:hint="Password"
-                android:textColor="@color/colorWhite"
                 android:layout_marginTop="20dp"
                 />
 
@@ -43,13 +42,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
-            android:id="@+id/mob_no"
+            android:id="@+id/et_mob_no"
             android:hint="Mobile number"
             android:layout_marginTop="20dp"/>
 
 
             <Spinner
-                android:id="@+id/spinner"
+                android:id="@+id/et_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:spinnerMode="dropdown"

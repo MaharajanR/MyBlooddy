@@ -3,6 +3,7 @@ package world.myblooddy.DataStore;
 import android.app.Activity;
 import android.content.Context;
 import android.support.design.widget.Snackbar;
+import android.view.View;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -91,7 +92,11 @@ public class Requests {
 
     /* Helper Functions */
 
-    private static void makeSnackbar(String message){
+    public static void makeSnackbar(String message){
         Snackbar.make(activity.getCurrentFocus(),message,Snackbar.LENGTH_SHORT).show();
+    }
+
+    public static void makeSnackbar(View focus, String message){
+        Snackbar.make(focus,message,Snackbar.LENGTH_SHORT).show();
     }
 }

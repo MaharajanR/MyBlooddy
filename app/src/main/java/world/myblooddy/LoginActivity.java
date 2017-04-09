@@ -7,12 +7,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 import cz.msebera.android.httpclient.Header;
+import world.myblooddy.DataStore.AppConstants;
 import world.myblooddy.DataStore.Requests;
 
 import static android.R.attr.button;
@@ -38,7 +40,7 @@ public class LoginActivity extends AppCompatActivity{
             public void onClick(View view) {
 
 
-               String mobile =  editTextPhone.getText().toString();
+               final String mobile =  editTextPhone.getText().toString();
                 String passwrod = editTextPassword.getText().toString();
 
                 AsyncHttpClient client = new AsyncHttpClient();
@@ -47,11 +49,16 @@ public class LoginActivity extends AppCompatActivity{
                 params.add("id",mobile);
                 params.add("password",passwrod);
 
+                Toast.makeText(getApplicationContext(), "Logging in, Please wait..",Toast.LENGTH_SHORT).show();
+
                 client.post(SERVER + "/user/login", params, new AsyncHttpResponseHandler() {
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
 
                         if(Integer.parseInt(new String(responseBody)) == 1){
+
+                            AppConstants.id = mobile;
+
                             Intent i = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(i);
                         }else{
@@ -62,7 +69,7 @@ public class LoginActivity extends AppCompatActivity{
 
                     @Override
                     public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-
+                        Toast.makeText(getApplicationContext(), "Error occurred, Try again",Toast.LENGTH_SHORT).show();
                     }
                 });
 

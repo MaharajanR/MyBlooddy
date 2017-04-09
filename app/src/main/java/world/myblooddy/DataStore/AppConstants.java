@@ -8,9 +8,11 @@ public class AppConstants {
     public static  boolean BuddiesViewCreated = false;
     public static  boolean SentViewCreated = false;
     public static  boolean IncomingViewCreated = false;
+    public  static String id = "";
+    public  static  String name = "";
 
-    public static String SERVER = "http://10.0.2.1:9090";
-    //public static String SERVER = "http://blooddy.aroliant.in:9000";
+    //public static String SERVER = "http://10.0.2.1:8080";
+    public static String SERVER = "http://active-server.herokuapp.com";
 
 
 }

@@ -2,6 +2,7 @@ package world.myblooddy;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -48,12 +49,28 @@ public class RegisterActivity extends AppCompatActivity  {
                 params.add("group",spinner.getSelectedItem().toString());
 
 
+                Toast.makeText(getApplicationContext(), "Registering please wait...",Toast.LENGTH_SHORT).show();
+
                 AsyncHttpClient client = new AsyncHttpClient();
                 client.post(SERVER + "/user/register", params, new AsyncHttpResponseHandler() {
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                        Toast.makeText(getApplicationContext(), "Registration Success",Toast.LENGTH_SHORT).show();
-                        finish();
+
+                        String response = new String(responseBody);
+
+                        Log.d("...",response);
+
+                        if(response.matches("1")){
+                            Toast.makeText(getApplicationContext(), "Registration Success",Toast.LENGTH_SHORT).show();
+                            finish();
+
+                        }else if(response.matches("-1")){
+                            Toast.makeText(getApplicationContext(), "Mobile Number Already Registered",Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(getApplicationContext(), "Error occurred Please Retry",Toast.LENGTH_SHORT).show();
+                        }
+
+
                     }
 
                     @Override

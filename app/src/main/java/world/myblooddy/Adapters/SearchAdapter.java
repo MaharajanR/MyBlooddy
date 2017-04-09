@@ -11,12 +11,20 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import cz.msebera.android.httpclient.Header;
+import world.myblooddy.DataStore.AppConstants;
 import world.myblooddy.DataStore.Requests;
 import world.myblooddy.R;
+
+import static world.myblooddy.DataStore.AppConstants.SERVER;
 
 /**
  * Created by Jacob Samro on 09-Apr-16.
@@ -27,18 +35,22 @@ public class SearchAdapter extends BaseAdapter {
     ArrayList<String> names = new ArrayList<String>();
     ArrayList<String> blood_group = new ArrayList<String>();
     ArrayList<String> last_given = new ArrayList<String>();
+    ArrayList<String> mobile = new ArrayList<String>();
+
 
     private static LayoutInflater inflater = null;
 
     public SearchAdapter(Context context,
                          ArrayList<String> names,
                          ArrayList<String> blood_group,
-                         ArrayList<String> last_given) {
+                         ArrayList<String> last_given,
+                         ArrayList<String> mobile) {
 
         this.context = context;
         this.names = names;
         this.blood_group = blood_group;
         this.last_given = last_given;
+        this.mobile = mobile;
 
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -103,22 +115,42 @@ public class SearchAdapter extends BaseAdapter {
 
         final TextView tv_blood_req_send = (TextView) vi.findViewById(R.id.blood_req_send);
 
+
         tv_blood_req_send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context,"Request Sent",Toast.LENGTH_LONG).show();
-                try {
 
-                    JSONObject req = new JSONObject();
 
-                    req.put("from","jinitha");
-                    req.put("to",names.get(position));
+                RequestParams params = new RequestParams();
 
-                    Requests.sent.put(req);
+                params.add("from", AppConstants.id);
+                params.add("to",tv_blood_req_send.getTag().toString());
+                params.add("group",blood_group.get(position));
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                Toast.makeText(context,"Sending Please wait..",Toast.LENGTH_LONG).show();
+
+                AsyncHttpClient client = new AsyncHttpClient();
+
+                client.post(SERVER + "/blood/request", params, new AsyncHttpResponseHandler() {
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                            if(new String(responseBody).matches("1")){
+                                Toast.makeText(context,"Request Sent",Toast.LENGTH_LONG).show();
+                            }else{
+                                Toast.makeText(context,"Unable to send request",Toast.LENGTH_LONG).show();
+                            }
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+
+                        Toast.makeText(context,"Unable to send request",Toast.LENGTH_LONG).show();
+                    }
+                });
+
+
+
+
 
             }
         });
@@ -130,7 +162,7 @@ public class SearchAdapter extends BaseAdapter {
         tv_bloodgroup.setText(blood_group.get(position));
 
         tv_lastgiven.setText(last_given.get(position));
-
+        tv_blood_req_send.setTag(mobile.get(position));
 
 
         return vi;

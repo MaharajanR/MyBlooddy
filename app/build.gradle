@@ -33,6 +33,7 @@ dependencies {
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'me.grantland:autofittextview:0.2.+'
     compile 'com.skyfishjy.ripplebackground:library:1.0.1'
+    compile 'org.ocpsoft.prettytime:prettytime:3.2.7.Final'
     compile 'com.android.support.constraint:constraint-layout:1.0.0'
     testCompile 'junit:junit:4.12'
 }

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.support.v4.app.FragmentManager;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +15,12 @@ import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.ocpsoft.prettytime.PrettyTime;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import world.myblooddy.R;
 
@@ -24,7 +29,10 @@ import world.myblooddy.R;
  */
 public class SentRequestsAdapter extends BaseAdapter {
 
+
+
     Context context;
+    PrettyTime p;
     Activity activity;
     ArrayList<String> names = new ArrayList<String>();
     ArrayList<String> sent_blood_group = new ArrayList<String>();
@@ -46,6 +54,7 @@ public class SentRequestsAdapter extends BaseAdapter {
 
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
+        p = new PrettyTime();
 
 
     }
@@ -109,12 +118,20 @@ public class SentRequestsAdapter extends BaseAdapter {
         tv_name.setText(names.get(position));
         tv_name.setTag(position);
 
+        try {
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+        Date dt = formatter.parse(sent_time.get(position));
+
+        CharSequence  output = DateUtils.getRelativeTimeSpanString (dt.getTime());
 
         tv_sent_bloodgroup.setText(sent_blood_group.get(position));
 
-        tv_sent_time.setText(sent_time.get(position));
+        tv_sent_time.setText(output.toString());
 
-
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         return vi;
     }
@@ -122,6 +139,7 @@ public class SentRequestsAdapter extends BaseAdapter {
     public LayoutInflater getLayoutInflater() {
         return getLayoutInflater();
     }
+
 
 
 }

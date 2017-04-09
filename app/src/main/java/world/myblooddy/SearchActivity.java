@@ -50,6 +50,8 @@ public class SearchActivity extends AppCompatActivity {
         final ArrayList<String> names = new ArrayList<String>();
         final ArrayList<String> blood_group = new ArrayList<String>();
         final ArrayList<String> last_given = new ArrayList<String>();
+        final ArrayList<String> mobile = new ArrayList<String>();
+
 
         AsyncHttpClient client = new AsyncHttpClient();
 
@@ -72,11 +74,13 @@ public class SearchActivity extends AppCompatActivity {
                         Log.d("...",user.getString("name"));
                         blood_group.add(user.getString("group"));
                         last_given.add("few days ago");
+                        mobile.add(user.getString("id"));
 
                         SearchAdapter searchAdapter = new SearchAdapter(getApplicationContext(),
                                 names,
                                 blood_group,
-                                last_given);
+                                last_given,
+                                mobile);
 
                         listview.setAdapter(searchAdapter);
 

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.support.v4.app.FragmentManager;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,10 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import world.myblooddy.DataStore.Requests;
 import world.myblooddy.R;
@@ -30,6 +34,7 @@ public class IncomingRequestsAdapter extends BaseAdapter {
     ArrayList<String> received_time = new ArrayList<String>();
     ArrayList<String> blood_group = new ArrayList<String>();
     ArrayList<String> names = new ArrayList<String>();
+    ArrayList<String> id = new ArrayList<String>();
 
     FragmentManager fragmentManager;
 
@@ -39,13 +44,15 @@ public class IncomingRequestsAdapter extends BaseAdapter {
                                    Activity activity,
                                    ArrayList<String> names,
                                    ArrayList<String> blood_group,
-                                   ArrayList<String> received_time) {
+                                   ArrayList<String> received_time,
+                                   ArrayList<String> id) {
 
         this.context = context;
         this.names = names;
         this.blood_group = blood_group;
         this.received_time = received_time;
         this.activity = activity;
+        this.id = id;
 
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -107,22 +114,38 @@ public class IncomingRequestsAdapter extends BaseAdapter {
         final TextView tv_bloodgroup = (TextView) vi.findViewById(R.id.received_blood_group);
         final TextView tv_received_time = (TextView) vi.findViewById(R.id.request_received_time);
 
+        try {
+
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+            Date dt = formatter.parse(received_time.get(position));
+
+            CharSequence  output = DateUtils.getRelativeTimeSpanString (dt.getTime());
+
+            tv_received_time.setText(blood_group.get(position));
+
+            tv_received_time.setText(output.toString());
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
         final TextView tv_blood_req_accept = (TextView) vi.findViewById(R.id.blood_req_accept);
 
         tv_blood_req_accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context,"Request Acctpted",Toast.LENGTH_LONG).show();
+
+                Toast.makeText(context,"Request Accepted, Contact the person via "  + id.get(position),Toast.LENGTH_LONG).show();
+
+                tv_blood_req_accept.setText("accepted");
+
                 try {
 
-                JSONObject req = new JSONObject();
 
-                    req.put("from","jinitha");
-                    req.put("to",names.get(position));
 
-                    Requests.acceptRequest(req);
 
-                } catch (JSONException e) {
+
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
 
@@ -130,12 +153,9 @@ public class IncomingRequestsAdapter extends BaseAdapter {
         });
 
         tv_name.setText(names.get(position));
-        tv_received_time.setText(received_time.get(position));
         tv_name.setTag(position);
 
         tv_bloodgroup.setText(blood_group.get(position));
-
-        tv_received_time.setText(received_time.get(position));
 
 
 
